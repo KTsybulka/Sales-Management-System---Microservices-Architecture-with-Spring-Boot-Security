@@ -1,37 +1,102 @@
-# Sales Management System
+version: '3.8'
 
-## Overview
-  The Sales Management System is a microservices-based application designed to handle the sales process for goods or services. It ensures scalability, modularity, and security by dividing functionality into independent services.
-  
-  ## Microservices
-  1. **Customer Service**
-  - Handles customer registration, login, and role assignment (Admin/Customer).
-  
-  2. **Product/Service Catalog Service**
-  - Manages the catalog of products or services available for sale.
-  
-  3. **Order Management Service**
-  - Processes customer orders and tracks their status. Includes an automatic archiving system for orders older than six months.
-  
-  4. **Payment Service**
-  - Handles customer payments and provides payment status to the Order Management Service.
+services:
+  # Customer Service
+  customer-service:
+    image: customer-service:latest
+    build:
+      context: ./customer-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://customer-db:5432/customerdb
+      SPRING_DATASOURCE_USERNAME: customeruser
+      SPRING_DATASOURCE_PASSWORD: customerpass
+    depends_on:
+      - customer-db
 
-## Architecture
-- **Tech Stack**:
-           - Spring Boot (Microservices)
-           - REST APIs (Spring RestTemplate)
-           - Swagger (API Documentation)
-           - Spring Security (Role-based Authorization)
-           - Databases: PostgreSQL for each service
-           - Docker & Docker Compose (Containerization)
-           - GitHub Actions (CI/CD)
+  customer-db:
+    image: postgres:15
+    container_name: customer-db
+    environment:
+      POSTGRES_USER: customeruser
+      POSTGRES_PASSWORD: customerpass
+      POSTGRES_DB: customerdb
+    ports:
+      - "5433:5432"
 
-## Repository Structure
-- Each microservice has its own directory containing source code, `pom.xml`, and Docker configuration.
-- Centralized design diagrams and shared resources are stored in `design-diagrams/` and `scripts/`.
+  # Product Catalog Service
+  product-catalog-service:
+    image: product-catalog-service:latest
+    build:
+      context: ./product-catalog-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://product-catalog-db:5432/productdb
+      SPRING_DATASOURCE_USERNAME: productuser
+      SPRING_DATASOURCE_PASSWORD: productpass
+    depends_on:
+      - product-catalog-db
 
-## Setup Instructions
-1. Clone the repository:
-  ```bash
-  git clone https://github.com/<organization>/sales-management-system.git
-  cd sales-management-system
+  product-catalog-db:
+    image: postgres:15
+    container_name: product-catalog-db
+    environment:
+      POSTGRES_USER: productuser
+      POSTGRES_PASSWORD: productpass
+      POSTGRES_DB: productdb
+    ports:
+      - "5434:5432"
+
+  # Order Management Service
+  order-management-service:
+    image: order-management-service:latest
+    build:
+      context: ./order-management-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://order-db:5432/orderdb
+      SPRING_DATASOURCE_USERNAME: orderuser
+      SPRING_DATASOURCE_PASSWORD: orderpass
+    depends_on:
+      - order-db
+
+  order-db:
+    image: postgres:15
+    container_name: order-db
+    environment:
+      POSTGRES_USER: orderuser
+      POSTGRES_PASSWORD: orderpass
+      POSTGRES_DB: orderdb
+    ports:
+      - "5435:5432"
+
+  # Payment Service
+  payment-service:
+    image: payment-service:latest
+    build:
+      context: ./payment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://payment-db:5432/paymentdb
+      SPRING_DATASOURCE_USERNAME: paymentuser
+      SPRING_DATASOURCE_PASSWORD: paymentpass
+    depends_on:
+      - payment-db
+
+  payment-db:
+    image: postgres:15
+    container_name: payment-db
+    environment:
+      POSTGRES_USER: paymentuser
+      POSTGRES_PASSWORD: paymentpass
+      POSTGRES_DB: paymentdb
+    ports:
+      - "5436:5432"
