@@ -1,30 +1,30 @@
 version: '3.8'
 
 services:
-  # Customer Service
-  customer-service:
-    image: customer-service:latest
+  # Customer Role Service
+  customer-role-service:
+    image: customer-role-service:latest
     build:
-      context: ./customer-service
+      context: ./customer-role-service
       dockerfile: Dockerfile
     ports:
       - "8081:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://customer-db:5432/customerdb
-      SPRING_DATASOURCE_USERNAME: customeruser
-      SPRING_DATASOURCE_PASSWORD: customerpass
-    depends_on:
-      - customer-db
-
-  customer-db:
-    image: postgres:15
-    container_name: customer-db
-    environment:
-      POSTGRES_USER: customeruser
-      POSTGRES_PASSWORD: customerpass
-      POSTGRES_DB: customerdb
-    ports:
-      - "5433:5432"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://customer-db:5432/customerdb
+#      SPRING_DATASOURCE_USERNAME: customeruser
+#      SPRING_DATASOURCE_PASSWORD: customerpass
+#    depends_on:
+#      - customer-db
+#
+#  customer-db:
+#    image: postgres:15
+#    container_name: customer-db
+#    environment:
+#      POSTGRES_USER: customeruser
+#      POSTGRES_PASSWORD: customerpass
+#      POSTGRES_DB: customerdb
+#    ports:
+#      - "5433:5432"
 
   # Product Catalog Service
   product-catalog-service:
@@ -34,22 +34,22 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8082:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://product-catalog-db:5432/productdb
-      SPRING_DATASOURCE_USERNAME: productuser
-      SPRING_DATASOURCE_PASSWORD: productpass
-    depends_on:
-      - product-catalog-db
-
-  product-catalog-db:
-    image: postgres:15
-    container_name: product-catalog-db
-    environment:
-      POSTGRES_USER: productuser
-      POSTGRES_PASSWORD: productpass
-      POSTGRES_DB: productdb
-    ports:
-      - "5434:5432"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://product-catalog-db:5432/productdb
+#      SPRING_DATASOURCE_USERNAME: productuser
+#      SPRING_DATASOURCE_PASSWORD: productpass
+#    depends_on:
+#      - product-catalog-db
+#
+#  product-catalog-db:
+#    image: postgres:15
+#    container_name: product-catalog-db
+#    environment:
+#      POSTGRES_USER: productuser
+#      POSTGRES_PASSWORD: productpass
+#      POSTGRES_DB: productdb
+#    ports:
+#      - "5434:5432"
 
   # Order Management Service
   order-management-service:
