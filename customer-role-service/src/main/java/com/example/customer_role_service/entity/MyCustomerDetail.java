@@ -24,7 +24,8 @@ public class MyCustomerDetail implements UserDetails {
 //        this.isActive = customer.isActive();
 
         this.authorityList = Arrays.stream(customer.getRole().split(","))
-                .map(role -> new SimpleGrantedAuthority(role))
+//                .map(role -> new SimpleGrantedAuthority(role))
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
 //        this.createdAt = customer.getCreatedAt();
     }
