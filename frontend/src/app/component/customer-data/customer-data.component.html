@@ -1,0 +1,19 @@
+<p>customer-data works!</p>
+
+<div class="customer-data">
+    @for(customer of customers; track customer.customerId){
+        <li>
+            <strong>Customer ID:</strong> {{ customer.customerId }} <br>
+            <strong>Customer Name:</strong> {{ customer.customerName }} <br>
+            <strong>Role:</strong> {{ customer.role }} <br>
+            <strong>Active:</strong> {{ customer.active ? 'Yes' : 'No' }} <br>
+            <strong>Created At:</strong> {{ customer.createdAt | date:'medium' }}
+          </li>
+
+    }
+
+</div>
+
+
+
+
