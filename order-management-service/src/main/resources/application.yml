@@ -6,7 +6,8 @@ server:
   port: 8083
 
 productCatalogAdaptor:
-  urlTemplate: http://localhost:8082/product/name/{productName}
+  urlTemplate: http://localhost:8082/api/v1/product/name/{productName}
+
 
 spring:
   datasource:
