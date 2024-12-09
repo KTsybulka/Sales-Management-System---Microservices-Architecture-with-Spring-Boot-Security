@@ -1,1 +1,147 @@
-/* You can add global styles to this file, and also import other style files */
+/* Header Styles */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Paragraph Styles */
+p {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Customer Data Section */
+.customer-data {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.customer-data ul {
+    list-style: none;
+    padding: 0;
+}
+
+.customer-data li {
+    background: #fff;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.customer-data li strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #007BFF;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    background-color: #0056b3;
+    color: white;
+    text-decoration: none;
+}
+
+/* Ensure the navigation links are visually prominent */
+nav ul li a {
+    font-family: 'Arial', sans-serif;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  small {
+    color: red;
+    font-size: 12px;
+  }
+
+
+  span {
+    display: inline-block;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff; /* Default blue for true */
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-top: 5px; /* Space between the checkbox and text */
+  }
+  
+  span:empty {
+    display: none;
+  }
+  
+  /* Conditional styling for False */
+  span.false {
+    background-color: #dc3545; /* Red for false */
+  }

@@ -1,1 +1,54 @@
-<p>customer-form works!</p>
+<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="customerName">Customer Name</label>
+        <input type="text" id="customerName" formControlName="customerName">
+        @if(feedbackForm.get('customerName')?.invalid && feedbackForm.get('customerName')?.touched){
+            <div>
+                @if(feedbackForm.get('customerName')?.errors?.['required']){
+                    <small>Customer Name is required</small>
+                }
+            </div>
+        }
+    </div>
+    
+    <div>
+        <label for ="customerPassword">Customer Password</label>
+        <input type="password" id="customerPassword" formControlName="customerPassword">
+        @if(feedbackForm.get('customerPassword')?.invalid && feedbackForm.get('customerPassword')?.touched){
+            <div>
+                @if(feedbackForm.get('customerPassword')?.errors?.['required']){
+                    <small>Customer Password is required</small>
+                }
+            </div>
+        }
+    </div>
+
+    <div>
+        <label for="active">Active</label>
+        <input type="checkbox" id="active" formControlName="active">
+        <!-- <span>{{ feedbackForm.get('active')?.value ? 'True' : 'False' }}</span> -->
+        <span
+        [class.false]="!feedbackForm.get('active')?.value"
+        >{{ feedbackForm.get('active')?.value ? 'True' : 'False' }}</span
+      >
+
+    </div>
+
+    <div>
+        <label for="role">Role</label>
+        <select id="role" formControlName="role">
+            <option value="">Select Role</option>
+            <option value="ROLE_CUSTOMER">Customer</option>
+            <option value="ROLE_ADMIN">Admin</option>
+        </select>
+        @if(feedbackForm.get('role')?.invalid && feedbackForm.get('role')?.touched){
+            <div>
+                @if(feedbackForm.get('role')?.errors?.['required']){
+                    <small>Role is required</small>
+                }
+            </div>
+        }
+    </div>
+
+    <button type="submit" [disabled]="feedbackForm.invalid">Submit</button>
+  </form>
