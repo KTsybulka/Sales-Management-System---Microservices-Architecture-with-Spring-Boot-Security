@@ -1,5 +1,6 @@
 package com.example.order_management_service.restController;
 
+import com.example.order_management_service.entity.OrderItem;
 import com.example.order_management_service.entity.PurchaseOrder;
 import com.example.order_management_service.service.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,21 @@ public class PurchaseOrderController {
     @GetMapping("/orders")
     public ResponseEntity<List<PurchaseOrder>> getOrders(){
         return ResponseEntity.ok(orderService.getAllTOrders());
+    }
+
+    @GetMapping("/orders/{orderId}")
+    public ResponseEntity<PurchaseOrder> getOrderById(@PathVariable Long orderId){
+        PurchaseOrder order = orderService.getOrderById(orderId);
+        if(order != null){
+            return ResponseEntity.ok(order);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/orders/{orderId}/orderItems")
+    public ResponseEntity<List<OrderItem>> getOrderItems(@PathVariable Long orderId){
+        return ResponseEntity.ok(orderService.getOrderItems(orderId));
     }
 
 }

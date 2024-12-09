@@ -24,5 +24,5 @@ public class OrderItem {
     @ManyToOne
     @JoinColumn(name = "orderId")
     @JsonBackReference
-    private PurchaseOrder order;
+    private PurchaseOrder purchaseOrder;
 }

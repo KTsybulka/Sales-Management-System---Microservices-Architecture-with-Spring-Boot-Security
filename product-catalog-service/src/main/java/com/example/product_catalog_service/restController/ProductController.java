@@ -50,6 +50,7 @@ public class ProductController {
 
     //Get a product by its ID
     @GetMapping("/{productId}")
+
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
         log.info("Fetching product by ID: {} ", productId);
         Product product = productService.getProductById(productId);

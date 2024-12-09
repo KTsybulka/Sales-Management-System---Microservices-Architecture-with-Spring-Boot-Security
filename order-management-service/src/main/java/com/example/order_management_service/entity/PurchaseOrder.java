@@ -23,7 +23,7 @@ public class PurchaseOrder {
 
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<OrderItem> orderItems;
 
